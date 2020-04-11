@@ -1,4 +1,6 @@
 <h1 align="center">
+  <img src="https://raw.githubusercontent.com/almejo/zork/master/images/zork.jpeg" alt="Zork">
+  <br />
   Zork
 </h1>
 
