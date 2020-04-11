@@ -1,0 +1,37 @@
+name: zork
+base: core18 
+version: '1.0.2'
+summary: 'Zork: The Great Underground Empire# 79 char long summary'
+description: |
+  Zork is a game of adventure, danger, and low cunning.
+  One of the earliest interactive fiction computer games. In it 
+  you will explore some of the most amazing territory ever seen
+  by mortal man. Hardened adventurers have run screaming from the
+  terrors contained within.
+
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
+
+parts:
+  zork:
+    plugin: make
+    source: https://github.com/devshane/zork
+    source-type: git
+    override-build: |
+      sed -i 's/TEXTFILE=\\"/TEXTFILE=\\"\/snap\/zork\/current\//' Makefile
+      make
+      mkdir -p ${SNAPCRAFT_PART_INSTALL}/usr/games/ 
+      mkdir -p ${SNAPCRAFT_PART_INSTALL}/usr/games/lib/
+      mkdir -p ${SNAPCRAFT_PART_INSTALL}/usr/share/man/man6
+      cp zork ${SNAPCRAFT_PART_INSTALL}/usr/games/
+      cp dtextc.dat ${SNAPCRAFT_PART_INSTALL}/usr/games/lib/
+      cp dungeon.6 ${SNAPCRAFT_PART_INSTALL}/usr/share/man/man6/
+    build-packages: 
+      - gcc
+      - libncurses5-dev
+      - libtinfo5
+
+apps:
+  zork:
+    plugs: [home]
+    command: zork
