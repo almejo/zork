@@ -2,11 +2,12 @@
 Version=1.0.2
 Type=Application
 Name=Zork: The Great Underground Empire
+Comment=Zork is a game of adventure, danger, and low cunning
 GenericName=Zork
 Exec=zork
 TryExec=zork
 Icon=${SNAP}/meta/gui/zork.png
 Terminal=true
 Path=/usr/games/
-Categories=Games;
+Categories=Game;RolePlaying;
 StartupNotify=true
